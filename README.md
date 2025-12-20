@@ -14,3 +14,5 @@
 10. [JWT авторизация с access/refresh токенами](./pz10-auth/README.md)
 11. [Чистая архитектура](./notes-api/README.md)
 12. [Openapi документация](./notes-api/README12.md)
+13. [Профилирование производительности](./pz13-pprof/README.md)
+15. [Unit тестирование](./pz15-testing/)
