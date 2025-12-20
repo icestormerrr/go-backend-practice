@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ReDoc</title>
+    <meta charset="utf-8">
+    <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
+</head>
+<body>
+    <div id="redoc-container"></div>
+    
+    <script>
+        fetch('/swagger.json')
+            .then(response => response.json())
+            .then(spec => {
+                Redoc.init(spec, {
+                    scrollYOffset: 50
+                }, document.getElementById('redoc-container'));
+            })
+            .catch(error => {
+                document.body.innerHTML = `
+                    <h2>Ошибка загрузки спецификации</h2>
+                    <p>${error.message}</p>
+                    <p>Убедитесь, что сервер запущен на localhost:8080</p>
+                `;
+            });
+    </script>
+</body>
+</html>

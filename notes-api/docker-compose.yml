@@ -1,0 +1,21 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: server_container
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    depends_on:
+      - postgres
+    networks:
+      - shared_network
+
+volumes:
+  redis_data:
+
+networks:
+  shared_network: {}
