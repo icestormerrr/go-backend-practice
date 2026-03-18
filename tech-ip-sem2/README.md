@@ -17,23 +17,32 @@
 ## Структура
 
 ```text
-tech-ip-sem2/
-  services/
-    auth/
-      cmd/auth/main.go
-      internal/http/
-      internal/service/
-    tasks/
-      cmd/tasks/main.go
-      internal/http/
-      internal/service/
-      internal/client/authclient/
-  shared/
-    middleware/
-    httpx/
-  docs/
-    pz17_api.md
-    pz17_diagram.md
+tech-ip-sem2/                          - корень проекта практической работы
+├── services/                          - каталог всех микросервисов
+│   ├── auth/                          - Auth service
+│   │   ├── cmd/
+│   │   │   └── auth/
+│   │   │       └── main.go            - точка входа Auth service
+│   │   └── internal/
+│   │       ├── http/                  - HTTP-роуты и handlers Auth service
+│   │       └── service/               - бизнес-логика авторизации
+│   └── tasks/                         - Tasks service
+│       ├── cmd/
+│       │   └── tasks/
+│       │       └── main.go            - точка входа Tasks service
+│       └── internal/
+│           ├── client/
+│           │   └── authclient/        - HTTP-клиент Tasks -> Auth
+│           ├── http/                  - HTTP-роуты и handlers Tasks service
+│           └── service/               - бизнес-логика и in-memory хранилище задач
+├── shared/                            - общий код для обоих сервисов
+│   ├── middleware/                    - middleware логирование
+│   └── httpx/                         - создание HTTP-клиента с таймаутами
+├── docs/                              - документация по API и схеме взаимодействия
+│   ├── pz17_api.md                    - описание эндпоинтов, кодов ответов и примеров запросов
+│   └── pz17_diagram.md                - Mermaid-диаграмма взаимодействия сервисов
+│   └── pz17_real_requests.md          - Пример реальных запросов, ответов, логов
+├── go.mod                             - Go-модуль проекта
 ```
 
 ## Запуск
