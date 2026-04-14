@@ -24,3 +24,5 @@
 20. [Мониторинг через prometheus и grafana](./tech-ip-sem2-monitoring/)
 21. [Настройка https соединения](./tech-ip-sem2-security/)
 22. [Зашита от CSRF и XSS атак](./tech-ip-sem2-web-security/)
+23. [Multistage build в docker](./tech-ip-sem2-docker/)
+
