@@ -19,5 +19,6 @@
 16. [Интеграционное тестирование API](./pz16-integration/)
 17. [Введение в микросервисы](./tech-ip-sem2/)
 18. [Базовые grpc сервисы](./tech-ip-sem2-grpc/)
-19. [Мониторинг через prometheus и grafana](./tech-ip-sem2-monitoring/)
-20. [Настройка https соединения](./tech-ip-sem2-security/)
+19. [Базовое логирование](./tech-ip-sem2-logging/)
+20. [Мониторинг через prometheus и grafana](./tech-ip-sem2-monitoring/)
+21. [Настройка https соединения](./tech-ip-sem2-security/)
