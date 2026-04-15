@@ -1,0 +1,108 @@
+package httpapi
+
+import (
+	"encoding/json"
+	"net/http"
+	"strconv"
+	"strings"
+
+	"example.com/tech-ip-sem2-redis-cache/internal/service"
+	"example.com/tech-ip-sem2-redis-cache/internal/task"
+)
+
+type Handler struct {
+	service *service.TaskService
+}
+
+func NewHandler(service *service.TaskService) *Handler {
+	return &Handler{service: service}
+}
+
+func (h *Handler) ListTasks(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	tasks, err := h.service.ListTasks(r.Context())
+	if err != nil {
+		http.Error(w, "failed to list tasks", http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	_ = json.NewEncoder(w).Encode(tasks)
+}
+
+func (h *Handler) GetTaskByID(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	rawID := strings.TrimPrefix(r.URL.Path, "/v1/tasks/")
+	id, err := strconv.ParseInt(rawID, 10, 64)
+	if err != nil {
+		http.Error(w, "invalid id", http.StatusBadRequest)
+		return
+	}
+
+	t, err := h.service.GetTaskByID(r.Context(), id)
+	if err != nil {
+		http.Error(w, "task not found", http.StatusNotFound)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	_ = json.NewEncoder(w).Encode(t)
+}
+
+func (h *Handler) PatchTask(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPatch {
+		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	rawID := strings.TrimPrefix(r.URL.Path, "/v1/tasks/")
+	id, err := strconv.ParseInt(rawID, 10, 64)
+	if err != nil {
+		http.Error(w, "invalid id", http.StatusBadRequest)
+		return
+	}
+
+	var t task.Task
+	if err := json.NewDecoder(r.Body).Decode(&t); err != nil {
+		http.Error(w, "bad json", http.StatusBadRequest)
+		return
+	}
+
+	t.ID = id
+
+	if err := h.service.UpdateTask(r.Context(), t); err != nil {
+		http.Error(w, "task not found", http.StatusNotFound)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+}
+
+func (h *Handler) DeleteTask(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodDelete {
+		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	rawID := strings.TrimPrefix(r.URL.Path, "/v1/tasks/")
+	id, err := strconv.ParseInt(rawID, 10, 64)
+	if err != nil {
+		http.Error(w, "invalid id", http.StatusBadRequest)
+		return
+	}
+
+	if err := h.service.DeleteTask(r.Context(), id); err != nil {
+		http.Error(w, "task not found", http.StatusNotFound)
+		return
+	}
+
+	w.WriteHeader(http.StatusNoContent)
+}
