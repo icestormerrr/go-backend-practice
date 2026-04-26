@@ -28,5 +28,6 @@
 24. [Простейший ci/cd пайплайн](https://github.com/icestormerrr/tech-ip-sem2-cicd)
 25. [Кеширование и инвалидация в redis](./tech-ip-sem2-redis-cache/)
 26. [Базовая балансировка нагрузки через NGINX](./tech-ip-sem2-load-balancer)
+27. [Введение в graphql](./tech-ip-sem2-graphql)
 
 
