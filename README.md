@@ -29,5 +29,5 @@
 25. [Кеширование и инвалидация в redis](./tech-ip-sem2-redis-cache/)
 26. [Базовая балансировка нагрузки через NGINX](./tech-ip-sem2-load-balancer)
 27. [Введение в graphql](./tech-ip-sem2-graphql)
-
+28. [Сравнение graphql и rest](./tech-ip-sem2-gql-vs-rest)
 
