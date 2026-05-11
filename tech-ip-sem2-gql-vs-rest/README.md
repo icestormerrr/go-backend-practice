@@ -145,7 +145,7 @@ $graphqlMeasure = Measure-Command {
 
 Замер выполнен локально на одном и том же сервере при `1000` итерациях.
 
-![alt text](docs/docs/image-3.png)
+![alt text](docs/image-3.png)
 
 Практический вывод по этому тесту: при запросе только списка идентификаторов GraphQL в данном проекте оказался быстрее, потому что передаёт меньший объём данных. Но важно отметить, что разница очень небольшая, тк различие в объёме передаваемых данных очень небольшое. Следовательно gql надстройка имеет смысл только в действительно сложных сценариях.
 
@@ -158,9 +158,9 @@ $graphqlMeasure = Measure-Command {
 Клиенту нужны только поля `id`, `title`, `done`.
 
 - REST-ответ списка: `300` байт
-![alt text](docs/docs/image.png)
+![alt text](docs/image.png)
 - GraphQL-ответ списка: `195` байт
-![alt text](docs/docs/image-4.png)
+![alt text](docs/image-4.png)
 Причина различия:
 
 - REST возвращает ещё и `description`, хотя экран списка это поле не использует
@@ -191,7 +191,7 @@ Invoke-WebRequest -UseBasicParsing http://localhost:8080/v1/tasks/unknown
 
 Ответ:
 
-![alt text](docs/docs/image-1.png)
+![alt text](docs/image-1.png)
 
 Клиент понимает ошибку по HTTP-статусу `404` и телу ответа.
 
@@ -220,7 +220,7 @@ query GetMissing($id: ID!) {
 
 Ответ:
 
-![alt text](docs/docs/image-2.png)
+![alt text](docs/image-2.png)
 
 При этом HTTP-статус остаётся `200 OK`.
 
