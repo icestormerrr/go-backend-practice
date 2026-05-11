@@ -32,4 +32,4 @@
 28. [Сравнение graphql и rest](./tech-ip-sem2-gql-vs-rest)
 29. [Введение в rabbitmq](./tech-ip-sem2-rabbitmq)
 30. [Базовая очередь в rabbitmq](./tech-ip-sem2-task-queue)
-
+31. [Базовое развертывание на vps](./tech-ip-sem2-vps)

@@ -14,6 +14,7 @@ func main() {
 
 	mux.HandleFunc("/hello", handlers.GetGreetingsHandler)
 	mux.HandleFunc("/user", handlers.GetUserHandler)
+	mux.HandleFunc("/task", handlers.GetTaskHandler)
 	mux.HandleFunc("/health", handlers.GrtHealthCheckHandler)
 
 	muxWithMiddlewares := middlewares.LoggingMiddleware(mux)
