@@ -33,3 +33,4 @@
 29. [Введение в rabbitmq](./tech-ip-sem2-rabbitmq)
 30. [Базовая очередь в rabbitmq](./tech-ip-sem2-task-queue)
 31. [Базовое развертывание на vps](./tech-ip-sem2-vps)
+32. [Введение в kubernetes](./tech-ip-sem2-k8s)
